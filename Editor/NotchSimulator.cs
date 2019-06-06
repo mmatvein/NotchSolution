@@ -35,9 +35,15 @@ namespace E7.NotchSolution
             bool enableSimulation = NotchSimulatorUtility.enableSimulation;
             EditorGUI.BeginChangeCheck();
 
+#if UNITY_2019_1_OR_NEWER
             string shortcut = ShortcutManager.instance.GetShortcutBinding(NotchSolutionShortcuts.toggleSimulationShortcut).ToString();
             if (string.IsNullOrEmpty(shortcut)) shortcut = "None";
-            NotchSimulatorUtility.enableSimulation = EditorGUILayout.BeginToggleGroup($"Simulate ({shortcut})", NotchSimulatorUtility.enableSimulation);
+            string label = $"Simulate({shortcut})";
+#else
+            string label = "Simulate";
+#endif
+            
+            NotchSimulatorUtility.enableSimulation = EditorGUILayout.BeginToggleGroup(label, NotchSimulatorUtility.enableSimulation);
             EditorGUI.indentLevel++;
 
             NotchSimulatorUtility.selectedDevice = (SimulationDevice)EditorGUILayout.EnumPopup(NotchSimulatorUtility.selectedDevice);

@@ -14,7 +14,9 @@ namespace E7.NotchSolution
         /// <summary>
         /// Switch between narrowest and widest aspect specified in the preferences to validate design. Switch to narrowest if currently on neither aspects.
         /// </summary>
+#if UNITY_2019_1_OR_NEWER
         [Shortcut(switchNarrowestWidestShortcut, null, KeyCode.M, ShortcutModifiers.Alt)]
+#endif
         static void SwitchNarrowestWidest()
         {
 
@@ -31,7 +33,9 @@ namespace E7.NotchSolution
             NotchSimulator.UpdateSimulatorTargets();
         }
 
+#if UNITY_2019_1_OR_NEWER
         [Shortcut(toggleSimulationShortcut, null, KeyCode.N, ShortcutModifiers.Alt)]
+#endif
         static void ToggleSimulation()
         {
             NotchSimulatorUtility.enableSimulation = !NotchSimulatorUtility.enableSimulation;

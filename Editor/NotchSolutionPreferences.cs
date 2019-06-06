@@ -1,9 +1,11 @@
+#if UNITY_2019_1_OR_NEWER
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.ShortcutManagement;
-using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+
 
 namespace E7.NotchSolution
 {
@@ -35,13 +37,15 @@ namespace E7.NotchSolution
 
             var repo = new Label("https://github.com/5argon/NotchSolution");
             repo.style.paddingBottom = 15;
+            #if UNITY_2019_1_OR_NEWER
             repo.style.unityFontStyleAndWeight = FontStyle.Bold;
+            #endif
             repo.RegisterCallback((MouseDownEvent ev) =>
             {
                 System.Diagnostics.Process.Start("https://github.com/5argon/NotchSolution");
             });
             padRect.Add(repo);
-
+            
             var colorField = new ColorField("Prefab mode overlay color");
             colorField.value = NotchSolutionUtility.PrefabModeOverlayColor;
             colorField.RegisterValueChangedCallback(ev =>
@@ -100,3 +104,4 @@ namespace E7.NotchSolution
 
     }
 }
+#endif
